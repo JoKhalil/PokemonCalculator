@@ -1,7 +1,7 @@
 class Pokemon:
-    def __init__(self, level, move, attack, defense, spAttack, spDefense, type):
+    def __init__(self, level, moves, attack, defense, spAttack, spDefense, type):
         self.level = level
-        self.move = move
+        self.moves = moves
         self.attack = attack
         self.defense = defense
         self.spAttack = spAttack

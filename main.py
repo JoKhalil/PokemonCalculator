@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import PySimpleGUI as sg
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from Pokemon import Pokemon
+
+layout = [[sg.Text("test")],[sg.Input()], [sg.Input()], [sg.Input()], [sg.Input()], [sg.Button("Info")], [sg.Listbox()]]
+
+pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
+
+window = sg.Window('testTitle', layout)
+
+event, values = window.read()
+
+if(event == 'Info'):
+    for move in pokemon.moves:
+        print(move.name)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+window.close()
