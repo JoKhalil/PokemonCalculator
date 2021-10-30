@@ -12,12 +12,14 @@ def jsonToMoves():
         # moveObj = moves.read()
         moveDict = json.load(moves)
         for i in moveDict:
-            movesList.append(i)
+            #['ename to only display ename']
+            movesList.append([i['ename'], i['type'], i['pp'], i['category']])
 
     return movesList
 
 
-layout = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo')], [sg.Button("Info")]]
+layout = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1')], [sg.Combo(jsonToMoves(), key='moveCombo2')]
+        , [sg.Combo(jsonToMoves(), key='moveCombo3')], [sg.Combo(jsonToMoves(), key='moveCombo4')], [sg.Button("Info")]]
 
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
@@ -27,6 +29,9 @@ event, values = window.read()
 
 if (event == 'Info'):
     #key is to call a specific component directly
-    print(values['moveCombo']['ename'])
+    print(values['moveCombo1'])
+    print(values['moveCombo2'])
+    print(values['moveCombo3'])
+    print(values['moveCombo4'])
 
 window.close()
