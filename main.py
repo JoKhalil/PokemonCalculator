@@ -18,8 +18,8 @@ def jsonToMoves():
     return movesList
 
 
-layout = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))]
-        , [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
+layout = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
+         [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
 
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
@@ -29,9 +29,9 @@ event, values = window.read()
 
 if (event == 'Info'):
     #key is to call a specific component directly
-    print(values['moveCombo1'])
-    print(values['moveCombo2'])
-    print(values['moveCombo3'])
-    print(values['moveCombo4'])
+    print(values['moveCombo1'][0])
+    print(values['moveCombo2'][0])
+    print(values['moveCombo3'][0])
+    print(values['moveCombo4'][0])
 
 window.close()
