@@ -7,11 +7,11 @@ class Move:
         self.powerPoint = powerPoint
         self.category = category
 
-    def jsonToMoves(self):
-        movesList = []
+    #def jsonToMoves(self):
+       # movesList = []
 
-        with open('json/moves.json') as moves:
-            moveObj = json.loads(moves)
-            movesList.append(Move(moveObj["ename"], moveObj["type"], moveObj["pp"], moveObj["category"]))
+        #with open('json/moves.json') as moves:
+         #   moveObj = json.loads(moves)
+          #  movesList.append(Move(moveObj["ename"], moveObj["type"], moveObj["pp"], moveObj["category"]))
 
-        return movesList
+        #return movesList

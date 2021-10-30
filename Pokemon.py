@@ -7,3 +7,7 @@ class Pokemon:
         self.spAttack = spAttack
         self.spDefense = spDefense
         self.type = type
+
+    def toString(self):
+
+        return self.level + " " + self.moves + " " + self.attack + " " + self.defense + " " + self.spAttack + " " + self.spDefense + " " + self.type
