@@ -1,5 +1,6 @@
 class Pokemon:
-    def __init__(self, level, moves, attack, defense, spAttack, spDefense, type):
+    def __init__(self, name, level, moves, attack, defense, spAttack, spDefense, type):
+        self.name = name
         self.level = level
         self.moves = moves
         self.attack = attack
@@ -10,4 +11,5 @@ class Pokemon:
 
     def toString(self):
 
-        return self.level + " " + self.moves + " " + self.attack + " " + self.defense + " " + self.spAttack + " " + self.spDefense + " " + self.type
+        return str(self.name) + " " + str(self.level) + " " + str(self.moves) + " " + str(self.attack) + " " \
+               + str(self.defense) + " " + str(self.spAttack) + " " + str(self.spDefense) + " " + str(self.type)
