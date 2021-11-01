@@ -17,12 +17,25 @@ def jsonToMoves():
 
     return movesList
 
+def jsonToPokemons():
+    pokemonsList = []
+    #encoding utf8 for chinese and japanese characters
+    with open('json/pokemons.json', encoding="utf8") as pokemons:
+        # for moveObj in moves:
+        # moveObj = moves.read()
+
+        pokemonDict = json.load(pokemons)
+        for i in pokemonDict:
+            #['ename to only display ename']
+            pokemonsList.append([i['name']['english'], i['type']])
+
+    return pokemonsList
+
+layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25,3))],
+              [sg.Combo(jsonToPokemons(), key="pokemonCombo")], [sg.Button("Create")]]
 
 layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
               [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
-
-layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25,3))],
-              [sg.Combo(["Bulbasaur", "Squirtle", "Charmander"], key="pokemonCombo")],[sg.Button("Create")]]#if pokemon.json is added dont forget to remove the brackets when calling the function
 
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
@@ -41,7 +54,7 @@ if(event == 'Create'):
 
 
 if (event == 'Info'):
-    print(valuesPokemon + ":")
+    print(valuesPokemon[0] + ":")
     #key is to call a specific component directly
     print(values['moveCombo1'][0])
     print(values['moveCombo2'][0])
@@ -55,7 +68,7 @@ if (event == 'Info'):
     pokemonMoveList.append(values['moveCombo3'][0])
     pokemonMoveList.append(values['moveCombo4'][0])
 
-    pokemon = Pokemon(valuesPokemon, 12, pokemonMoveList, 15, 20, 16, 21, "Fire")
+    pokemon = Pokemon(valuesPokemon[0], 12, pokemonMoveList, 15, 20, 16, 21, valuesPokemon[1])
 
     print(pokemon.toString())
 
