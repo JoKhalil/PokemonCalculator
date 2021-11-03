@@ -7,6 +7,8 @@ class Move:
         self.powerPoint = powerPoint
         self.category = category
 
+    def toString(self):
+        return str(self.name) + " " + str(self.type) + " " + str(self.powerPoint) + " " + str(self.category)
     #def jsonToMoves(self):
        # movesList = []
 

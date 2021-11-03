@@ -62,11 +62,15 @@ if (event == 'Info'):
     print(values['moveCombo4'][0])
 
     pokemonMoveList = []
+    firstMove = Move(values['moveCombo1'][0], values['moveCombo1'][1], values['moveCombo1'][2], values['moveCombo1'][3])
+    secondMove = Move(values['moveCombo2'][0], values['moveCombo2'][1], values['moveCombo2'][2], values['moveCombo2'][3])
+    thirdMove = Move(values['moveCombo3'][0], values['moveCombo3'][1], values['moveCombo3'][2], values['moveCombo3'][3])
+    fourthMove = Move(values['moveCombo4'][0], values['moveCombo4'][1], values['moveCombo4'][2], values['moveCombo4'][3])
 
-    pokemonMoveList.append(values['moveCombo1'][0])
-    pokemonMoveList.append(values['moveCombo2'][0])
-    pokemonMoveList.append(values['moveCombo3'][0])
-    pokemonMoveList.append(values['moveCombo4'][0])
+    pokemonMoveList.append(firstMove.name)
+    pokemonMoveList.append(secondMove.name)
+    pokemonMoveList.append(thirdMove.name)
+    pokemonMoveList.append(fourthMove.name)
 
     pokemon = Pokemon(valuesPokemon[0], 12, pokemonMoveList, 15, 20, 16, 21, valuesPokemon[1])
 
