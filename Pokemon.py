@@ -11,5 +11,6 @@ class Pokemon:
 
     def toString(self):
 
-        return str(self.name) + " " + str(self.level) + " " + str(self.moves) + " " + str(self.attack) + " " \
-               + str(self.defense) + " " + str(self.spAttack) + " " + str(self.spDefense) + " " + str(self.type)
+        return str(self.name) + " " + str(self.level) + " " + str(self.moves) + " Attack: " + str(self.attack) + " Defense: " \
+               + str(self.defense) + " Special Attack: " + str(self.spAttack) + " Special Defense: " + str(self.spDefense) \
+               + " " + str(self.type)

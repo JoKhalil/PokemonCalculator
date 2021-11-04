@@ -31,14 +31,16 @@ def jsonToPokemons():
 
     return pokemonsList
 
-layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25,3))],
-              [sg.Combo(jsonToPokemons(), key="pokemonCombo", size=(25))], [sg.Text("Attack")], [sg.InputText(key='attack', size=(5,3))],
-              [sg.Text("Defense")], [sg.InputText(key='defense', size=(5, 3))], [sg.Text("Sp Attack")], [sg.InputText(key='spAttack', size=(5,3))],
-              [sg.Text("Sp Defense")], [sg.InputText(key='spDefense', size=(5, 3))], [sg.Button("Create")]]
+layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25, 3))],
+              [sg.Combo(jsonToPokemons(), key="pokemonCombo", size=(25))], [sg.Text("Level")], [sg.InputText(key='level', size=(5, 3))],
+              [sg.Text("Attack")], [sg.InputText(key='attack', size=(5, 3))], [sg.Text("Defense")], [sg.InputText(key='defense', size=(5, 3))],
+              [sg.Text("Sp Attack")], [sg.InputText(key='spAttack', size=(5, 3))], [sg.Text("Sp Defense")],
+              [sg.InputText(key='spDefense', size=(5, 3))], [sg.Button("Create")]]
 
 layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
               [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
 
+layoutInfo = [[sg.Text(key="pokemonInfo")]]
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
 window = sg.Window('Pokelutor', layoutMain)
@@ -47,10 +49,12 @@ event, values = window.read()
 
 if(event == 'Create'):
     valuesPokemon = values['pokemonCombo']
+    level = values['level']
     statAttack = values['attack']
     statDefense = values['defense']
     statSpAttack = values['spAttack']
     statSpDefense = values['spDefense']
+
 
     window.close()
 
@@ -79,9 +83,13 @@ if (event == 'Info'):
     pokemonMoveList.append(thirdMove.name)
     pokemonMoveList.append(fourthMove.name)
 
+    pokemon = Pokemon(valuesPokemon[0], level, pokemonMoveList, statAttack, statDefense, statSpAttack, statSpDefense, valuesPokemon[1])
 
+    window = sg.Window("Info", layoutInfo)
 
-    pokemon = Pokemon(valuesPokemon[0], 12, pokemonMoveList, statAttack, statDefense, statSpAttack, statSpDefense, valuesPokemon[1])
+    values['pokemonInfo'] = pokemon.toString()
+
+    event, values = window.read()
 
     print(pokemon.toString())
 
