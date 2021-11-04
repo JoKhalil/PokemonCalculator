@@ -32,7 +32,9 @@ def jsonToPokemons():
     return pokemonsList
 
 layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25,3))],
-              [sg.Combo(jsonToPokemons(), key="pokemonCombo")], [sg.Button("Create")]]
+              [sg.Combo(jsonToPokemons(), key="pokemonCombo", size=(25))], [sg.Text("Attack")], [sg.InputText(key='attack', size=(5,3))],
+              [sg.Text("Defense")], [sg.InputText(key='defense', size=(5, 3))], [sg.Text("Sp Attack")], [sg.InputText(key='spAttack', size=(5,3))],
+              [sg.Text("Sp Defense")], [sg.InputText(key='spDefense', size=(5, 3))], [sg.Button("Create")]]
 
 layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
               [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
@@ -45,6 +47,11 @@ event, values = window.read()
 
 if(event == 'Create'):
     valuesPokemon = values['pokemonCombo']
+    statAttack = values['attack']
+    statDefense = values['defense']
+    statSpAttack = values['spAttack']
+    statSpDefense = values['spDefense']
+
     window.close()
 
     window = sg.Window(values['pokemonCombo'], layoutMove)
@@ -54,12 +61,12 @@ if(event == 'Create'):
 
 
 if (event == 'Info'):
-    print(valuesPokemon[0] + ":")
-    #key is to call a specific component directly
-    print(values['moveCombo1'][0])
-    print(values['moveCombo2'][0])
-    print(values['moveCombo3'][0])
-    print(values['moveCombo4'][0])
+    # print(valuesPokemon[0] + ":")
+    # key is to call a specific component directly
+    # print(values['moveCombo1'][0])
+    # print(values['moveCombo2'][0])
+    # print(values['moveCombo3'][0])
+    # print(values['moveCombo4'][0])
 
     pokemonMoveList = []
     firstMove = Move(values['moveCombo1'][0], values['moveCombo1'][1], values['moveCombo1'][2], values['moveCombo1'][3])
@@ -72,7 +79,9 @@ if (event == 'Info'):
     pokemonMoveList.append(thirdMove.name)
     pokemonMoveList.append(fourthMove.name)
 
-    pokemon = Pokemon(valuesPokemon[0], 12, pokemonMoveList, 15, 20, 16, 21, valuesPokemon[1])
+
+
+    pokemon = Pokemon(valuesPokemon[0], 12, pokemonMoveList, statAttack, statDefense, statSpAttack, statSpDefense, valuesPokemon[1])
 
     print(pokemon.toString())
 
