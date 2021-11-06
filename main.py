@@ -40,7 +40,7 @@ layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand
 layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
               [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
 
-layoutInfo = [[sg.Text(key="pokemonInfo")]]
+#layoutInfo = [[sg.Text(key="pokemonInfo")]]
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
 window = sg.Window('Pokelutor', layoutMain)
@@ -85,11 +85,11 @@ if (event == 'Info'):
 
     pokemon = Pokemon(valuesPokemon[0], level, pokemonMoveList, statAttack, statDefense, statSpAttack, statSpDefense, valuesPokemon[1])
 
-    window = sg.Window("Info", layoutInfo)
-
-    values['pokemonInfo'] = pokemon.toString()
-
-    event, values = window.read()
+    # window = sg.Window("Info", layoutInfo)
+    #
+    # values['pokemonInfo'] = pokemon.toString()
+    #
+    # event, values = window.read()
 
     print(pokemon.toString())
 
