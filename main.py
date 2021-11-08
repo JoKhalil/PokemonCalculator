@@ -31,6 +31,17 @@ def jsonToPokemons():
 
     return pokemonsList
 
+def jsonToWeathers():
+    weathersList = []
+
+    with open('json/weathers.json') as weathers:
+
+        weatherDict = json.load(weathers)
+        for i in weatherDict:
+            weathersList.append(i['weather'])
+    
+    return weathersList
+
 layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25, 3))],
               [sg.Combo(jsonToPokemons(), key="pokemonCombo", size=(25))], [sg.Text("Level")], [sg.InputText(key='level', size=(5, 3))],
               [sg.Text("Attack")], [sg.InputText(key='attack', size=(5, 3))], [sg.Text("Defense")], [sg.InputText(key='defense', size=(5, 3))],
