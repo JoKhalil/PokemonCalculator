@@ -1,0 +1,2 @@
+-Need to save enemy pokemon and auto calculate which move will do most damage on the enemy pokemon
+-Team saver could be interesting
