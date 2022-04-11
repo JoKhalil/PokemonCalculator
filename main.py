@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 import json
 from Move import Move
 from Pokemon import Pokemon
+from Team import Team
 
 
 def jsonToMoves():
@@ -42,19 +43,26 @@ def jsonToWeathers():
     
     return weathersList
 
-layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25, 3))],
+#
+#  Layout needs to be in a function to be used multiple times
+def layoutMain(title):
+
+    layoutMain = [[sg.Text("Welcome to the Pokelutor.\nPlease choose a pokemon \nand it's specification", size=(25, 3))],
               [sg.Combo(jsonToPokemons(), key="pokemonCombo", size=(25))], [sg.Text("Level")], [sg.InputText(key='level', size=(5, 3))],
               [sg.Text("Attack")], [sg.InputText(key='attack', size=(5, 3))], [sg.Text("Defense")], [sg.InputText(key='defense', size=(5, 3))],
               [sg.Text("Sp Attack")], [sg.InputText(key='spAttack', size=(5, 3))], [sg.Text("Sp Defense")],
-              [sg.InputText(key='spDefense', size=(5, 3))], [sg.Button("Create")]]
+              [sg.InputText(key='spDefense', size=(5, 3))], [sg.Button("Add")], [sg.Button("Create")]]
+    return sg.Window(title, layoutMain)
 
-layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
+def layoutMove(title):
+    layoutMove = [[sg.Text("test")], [sg.Combo(jsonToMoves(), key='moveCombo1', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo2', size=(25))],
               [sg.Combo(jsonToMoves(), key='moveCombo3', size=(25))], [sg.Combo(jsonToMoves(), key='moveCombo4', size=(25))], [sg.Button("Info")]]
+    return sg.Window(title, layoutMove)
 
 #layoutInfo = [[sg.Text(key="pokemonInfo")]]
 # pokemon = Pokemon(1, [layout.__getitem__(1), layout.__getitem__(2), layout.__getitem__(3), layout.__getitem__(4)], 1, 1, 1, 1, "Fire")
 
-window = sg.Window('Pokelutor', layoutMain)
+window = layoutMain('Pokelutor')
 
 event, values = window.read()
 
@@ -69,7 +77,7 @@ if(event == 'Create'):
 
     window.close()
 
-    window = sg.Window(values['pokemonCombo'], layoutMove)
+    window = layoutMove(values['pokemonCombo'])
 
     event, values = window.read()
 
@@ -96,6 +104,12 @@ if (event == 'Info'):
 
     pokemon = Pokemon(valuesPokemon[0], level, pokemonMoveList, statAttack, statDefense, statSpAttack, statSpDefense, valuesPokemon[1])
 
+
+    pokemonList = []
+    pokemonList.append(pokemon)
+
+    team = Team(pokemonList)
+
     # window = sg.Window("Info", layoutInfo)
     #
     # values['pokemonInfo'] = pokemon.toString()
@@ -103,5 +117,12 @@ if (event == 'Info'):
     # event, values = window.read()
 
     print(pokemon.toString())
+    print(team.toString())
 
     window.close()
+
+    window = layoutMain('Pokelutor')
+
+    event, values = window.read()
+
+

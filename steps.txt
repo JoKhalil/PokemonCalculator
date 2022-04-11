@@ -1,2 +1,3 @@
 -Need to save enemy pokemon and auto calculate which move will do most damage on the enemy pokemon
 -Team saver could be interesting
+-Team class to save 1-6 pokemons both for you and enemy
